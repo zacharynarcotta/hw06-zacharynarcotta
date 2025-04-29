@@ -6,36 +6,23 @@ public class MorseTree {
         root = null;
     }
 
-    public String preOrder(String out, TreeNode<String> node){ // Self -> Left -> Right
-        if (node.getLeft() == null && node.getRight() == null){
-            return node.getElement().toString();
-        }
-        else if (node.getLeft() != null && node.getRight() == null){
-            return node.getElement().toString() + " " + preOrder(out, node.getLeft());
-        }
-        else if (node.getLeft() == null && node.getRight() != null){
-            return node.getElement().toString() + " " + preOrder(out, node.getRight());
-        }
-        else{
-            return node.getElement().toString() + " " +
-            preOrder(out, node.getLeft()) + " " +
-            preOrder(out, node.getRight());
-        }
+    public void preorder(TreeNode<String> node) {
+        // BASE CASE
+        if(node == null) return;
+
+        // RECURSIVE CASES
+        System.out.println(node.getElement() + " ");
+        preorder(node.getLeft());
+        preorder(node.getRight());
     }
-    public String postOrder(String out, TreeNode<String> node){ // Left -> Right -> Self
-        if (node.getLeft() == null && node.getRight() == null){
-            return node.getElement().toString();
-        }
-        else if (node.getLeft() != null && node.getRight() == null){
-            return postOrder(out, node.getLeft()) + " " + node.getElement().toString();
-        }
-        else if (node.getLeft() == null && node.getRight() != null){
-            return postOrder(out, node.getRight()) + " " + node.getElement().toString();
-        }
-        else{
-            return preOrder(out, node.getLeft()) + " " +
-            preOrder(out, node.getRight()) + " " + 
-            node.getElement().toString();
-        }
+
+    public void postorder(TreeNode<String> node) {
+        // BASE CASE
+        if(node == null) return;
+
+        // RECURSIVE CASES
+        postorder(node.getLeft());
+        postorder(node.getRight());
+        System.out.println(node.getElement() + " ");
     }
 }
