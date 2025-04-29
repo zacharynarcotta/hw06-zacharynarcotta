@@ -1,28 +1,28 @@
 public class MorseTree {
-    public TreeNode<String> root;
+    public TreeNode<Character> root;
 
     // Default constructor for NULL root
     public MorseTree() {
-        root = null;
+        root = new TreeNode<Character>(null);
     }
 
-    public void preorder(TreeNode<String> node) {
+    public void preorder(TreeNode<Character> node) {
         // BASE CASE
         if(node == null) return;
 
         // RECURSIVE CASES
-        System.out.println(node.getElement() + " ");
+        if(node.getElement() != null) System.out.print(node.getElement() + " "); // Prevent root from being printed
         preorder(node.getLeft());
         preorder(node.getRight());
     }
 
-    public void postorder(TreeNode<String> node) {
+    public void postorder(TreeNode<Character> node) {
         // BASE CASE
         if(node == null) return;
 
         // RECURSIVE CASES
         postorder(node.getLeft());
         postorder(node.getRight());
-        System.out.println(node.getElement() + " ");
+        if(node.getElement() != null) System.out.print(node.getElement() + " "); 
     }
 }
