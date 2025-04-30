@@ -3,13 +3,6 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MorseTester {
-    // insert rules:
-    // ROOT IS NONE, simple a starting point
-    // if a character is represented by a dot (o), left descendant
-    // if a character is represented by a dash (-), right descendant
-    // if a character is one symbol, it will be one level below root
-    // represented by N symbols, N levels below root
-
     public static void main(String[] args) {
         MorseTree tree = new MorseTree();
         
@@ -22,7 +15,7 @@ public class MorseTester {
                 int lineLength = next.length();
 
                 // Build the Tree.
-                for(int i = 0; i < lineLength; i++) {
+                for(int i = 1; i < lineLength; i++) {
                     if(next.charAt(i) == 'o') {
                         if(toInsert.getLeft() != null) {
                             toInsert = toInsert.getLeft();
@@ -41,14 +34,20 @@ public class MorseTester {
                     }
                 }
             }
+
             tree.preorder(tree.root);
             System.out.println();
             tree.postorder(tree.root);
+            System.out.println();
+
+            String toTranslate = "The quiCk BROwN fox JUMPED oVer the LAzy DoG";
+            String inMorse = tree.engToMorse(toTranslate);
+            System.out.println(inMorse);
+            String backToEng = tree.morseToEng(inMorse);
+            System.out.println(backToEng);
         }
         catch (FileNotFoundException ex) {
             System.out.println("No file with name \"morsecode.txt\"!");
         }
-
-
     }
 }
